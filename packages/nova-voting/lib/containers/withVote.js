@@ -1,4 +1,3 @@
-import Posts from 'meteor/nova:posts';
 import React, { PropTypes, Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -8,8 +7,8 @@ import { operateOnItem } from '../vote.js';
 const withVote = component => {
 
   return graphql(gql`
-    mutation vote($documentId: String, $voteType: String, $collectionName: String) {
-      vote(documentId: $documentId, voteType: $voteType, collectionName: $collectionName) {
+    mutation vote($document: Votable, $voteType: String) {
+      vote(document: $document, voteType: $voteType) {
         _id
         upvotes
         upvoters {
@@ -28,9 +27,8 @@ const withVote = component => {
         const voteResult = operateOnItem(collection, document, currentUser, voteType, true);
         return mutate({ 
           variables: {
-            documentId: document._id, 
+            document: document, 
             voteType,
-            collectionName: collection._name,
           },
           optimisticResponse: {
             __typename: 'Mutation',

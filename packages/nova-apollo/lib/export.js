@@ -1,6 +1,6 @@
 import { GraphQLSchema } from 'meteor/nova:lib';
 
-import { makeExecutableSchema } from 'graphql-tools';
+import { makeExecutableSchema, addResolveFunctionsToSchema } from 'graphql-tools';
 
 import { meteorClientConfig } from './client.js';
 
@@ -16,6 +16,15 @@ Meteor.startup(function () {
     typeDefs,
     resolvers: GraphQLSchema.resolvers,
   });
+  
+  const typeResolver = {
+    Votable: {
+      __resolveType(obj) {
+        return obj.title ? 'Post' : 'Comment';
+      },
+    },
+  };
+  addResolveFunctionsToSchema(schema, typeResolver);
 
   createApolloServer({
     schema,
