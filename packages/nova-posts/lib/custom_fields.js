@@ -5,7 +5,7 @@ Users.addField([
     Count of the user's posts
   */
   {
-    fieldName: "__postCount",
+    fieldName: `${Users.prefix}postCount`,
     fieldSchema: {
       type: Number,
       optional: true,

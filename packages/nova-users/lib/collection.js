@@ -1,7 +1,7 @@
 import schema from './schema.js';
 import mutations from './mutations.js';
 import resolvers from './resolvers.js';
-import { createCollection, GraphQLSchema } from 'meteor/nova:lib'; // import from nova:lib because nova:core isn't loaded yet
+import { createCollection, GraphQLSchema, getSetting } from 'meteor/nova:lib'; // import from nova:lib because nova:core isn't loaded yet
 
 /**
  * @summary Telescope Users namespace
@@ -24,5 +24,7 @@ const Users = createCollection({
 });
 
 GraphQLSchema.addQuery(`currentUser: User`);
+
+Users.prefix = getSetting('usersPrefix', '_');
 
 export default Users;

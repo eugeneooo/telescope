@@ -30,6 +30,7 @@ import { Button } from 'react-bootstrap';
 import Flash from "./Flash.jsx";
 import FormGroup from "./FormGroup.jsx";
 import { flatten, deepValue, getEditableFields, getInsertableFields } from './utils.js';
+import Users from 'meteor/nova:users';
 
 /*
 
@@ -107,7 +108,9 @@ class Form extends Component {
 
       // add label or internationalized field name if necessary (field not hidden)
       if (!field.hidden) {
-        field.label = fieldSchema.label ? fieldSchema.label : this.context.intl.formatMessage({id: this.props.collection._name+"."+fieldName});
+        // remove Users prefix just in case
+        const fieldNameNoPrefix = fieldName.replace(Users.prefix, '');
+        field.label = fieldSchema.label ? fieldSchema.label : this.context.intl.formatMessage({id: this.props.collection._name+"."+fieldNameNoPrefix});
       }
 
       // add value

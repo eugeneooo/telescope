@@ -1,12 +1,13 @@
 import gql from 'graphql-tag';
+import Users from 'meteor/nova:users';
 
 const fragments = {
   // avatar: gql`
   //   fragment avatarUserInfo on User {
   //     _id
-  //     __emailHash
-  //     __displayName
-  //     __slug
+  //     ${Users.prefix}emailHash
+  //     ${Users.prefix}displayName
+  //     ${Users.prefix}slug
   //   }
   // `,
 
@@ -18,41 +19,41 @@ const fragments = {
         username
         createdAt
         isAdmin
-        __bio
-        __commentCount
-        __displayName
-        __downvotedComments {
+        ${Users.prefix}bio
+        ${Users.prefix}commentCount
+        ${Users.prefix}displayName
+        ${Users.prefix}downvotedComments {
           itemId
           power
           votedAt
         }
-        __downvotedPosts {
+        ${Users.prefix}downvotedPosts {
           itemId
           power
           votedAt
         }
-        __email
-        __emailHash
-        __groups
-        __htmlBio
-        __karma
-        __newsletter_subscribeToNewsletter
-        __notifications_users
-        __notifications_posts
-        __postCount
-        __slug
-        __twitterUsername
-        __upvotedComments {
+        ${Users.prefix}email
+        ${Users.prefix}emailHash
+        ${Users.prefix}groups
+        ${Users.prefix}htmlBio
+        ${Users.prefix}karma
+        ${Users.prefix}newsletter_subscribeToNewsletter
+        ${Users.prefix}notifications_users
+        ${Users.prefix}notifications_posts
+        ${Users.prefix}postCount
+        ${Users.prefix}slug
+        ${Users.prefix}twitterUsername
+        ${Users.prefix}upvotedComments {
           itemId
           power
           votedAt
         }
-        __upvotedPosts {
+        ${Users.prefix}upvotedPosts {
           itemId
           power
           votedAt
         }
-        __website
+        ${Users.prefix}website
       }
     `,
   },
@@ -65,41 +66,41 @@ const fragments = {
         username
         createdAt
         isAdmin
-        __bio
-        __commentCount
-        __displayName
-        __downvotedComments {
+        ${Users.prefix}bio
+        ${Users.prefix}commentCount
+        ${Users.prefix}displayName
+        ${Users.prefix}downvotedComments {
           itemId
           power
           votedAt
         }
-        __downvotedPosts {
+        ${Users.prefix}downvotedPosts {
           itemId
           power
           votedAt
         }
-        __email
-        __emailHash
-        __groups
-        __htmlBio
-        __karma
-        __newsletter_subscribeToNewsletter
-        __notifications_users
-        __notifications_posts
-        __postCount
-        __slug
-        __twitterUsername
-        __upvotedComments {
+        ${Users.prefix}email
+        ${Users.prefix}emailHash
+        ${Users.prefix}groups
+        ${Users.prefix}htmlBio
+        ${Users.prefix}karma
+        ${Users.prefix}newsletter_subscribeToNewsletter
+        ${Users.prefix}notifications_users
+        ${Users.prefix}notifications_posts
+        ${Users.prefix}postCount
+        ${Users.prefix}slug
+        ${Users.prefix}twitterUsername
+        ${Users.prefix}upvotedComments {
           itemId
           power
           votedAt
         }
-        __upvotedPosts {
+        ${Users.prefix}upvotedPosts {
           itemId
           power
           votedAt
         }
-        __website
+        ${Users.prefix}website
       }
     `,
   },

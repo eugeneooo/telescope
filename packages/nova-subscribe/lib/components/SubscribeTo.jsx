@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { intlShape } from 'react-intl';
 import { withCurrentUser, withMessages, registerComponent } from 'meteor/nova:core';
+import Users from 'meteor/nova:users';
 
 class SubscribeTo extends Component {
 
@@ -29,7 +30,7 @@ class SubscribeTo extends Component {
         this.props.flash(this.context.intl.formatMessage(
           {id: `${documentType}.${action}d`}, 
           // handle usual name properties
-          {name: document.name || document.title || document.__displayName}
+          {name: document.name || document.title || document[`${Users.prefix}displayName`]}
         ), "success");
         this.context.events.track(action, {'_id': this.props.document._id});
       }

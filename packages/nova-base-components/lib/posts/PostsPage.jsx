@@ -3,6 +3,7 @@ import React from 'react';
 import Posts from 'meteor/nova:posts';
 import { withDocument } from 'meteor/nova:core';
 import gql from 'graphql-tag';
+import Users from 'meteor/nova:users';
 
 const PostsPage = (props) => {
 
@@ -62,9 +63,9 @@ PostsPage.fragment = gql`
     commenters {
       # ...avatarUserInfo
       _id
-      __displayName
-      __emailHash
-      __slug
+      ${Users.prefix}displayName
+      ${Users.prefix}emailHash
+      ${Users.prefix}slug
     }
     upvoters {
       _id
@@ -79,9 +80,9 @@ PostsPage.fragment = gql`
     user {
       # ...avatarUserInfo
       _id
-      __displayName
-      __emailHash
-      __slug
+      ${Users.prefix}displayName
+      ${Users.prefix}emailHash
+      ${Users.prefix}slug
     }
     userId
   }

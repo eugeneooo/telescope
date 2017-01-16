@@ -1,4 +1,5 @@
 import { GraphQLSchema } from 'meteor/nova:lib';
+import Users from './collection.js';
 
 const specificResolvers = {
   User: {
@@ -38,7 +39,7 @@ const resolvers = {
     name: 'usersSingle',
     
     resolver(root, {documentId, slug}, context) {
-      const selector = documentId ? {_id: documentId} : {'__slug': slug};
+      const selector = documentId ? {_id: documentId} : {[`${Users.prefix}slug`]: slug};
       // get the user first so we can get a list of viewable fields specific to this user document
       const user = context.Users.findOne(selector);
       return context.Users.keepViewableFields(context.currentUser, context.Users, user);

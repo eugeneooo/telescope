@@ -99,7 +99,7 @@ function CommentsNewOperations (comment) {
 
   // increment comment count
   Users.update({_id: userId}, {
-    $inc:       {'__commentCount': 1}
+    $inc:       {[`${Users.prefix}commentCount`]: 1}
   });
 
   // update post

@@ -10,6 +10,7 @@ import Movies from '../collection.js';
 import { withDocument } from 'meteor/nova:core';
 import { compose } from 'react-apollo';
 import gql from 'graphql-tag';
+import Users from 'meteor/nova:users';
 
 const MoviesDetails = props => {
   const movie = props.document;
@@ -19,7 +20,7 @@ const MoviesDetails = props => {
     return (
       <div>
         <h2>{movie.name} ({movie.year})</h2>
-        <p>Reviewed by <strong>{movie.user && movie.user.__displayName}</strong> on {movie.createdAt}</p>
+        <p>Reviewed by <strong>{movie.user && movie.user[`${Users.prefix}displayName`]}</strong> on {movie.createdAt}</p>
         <p>{movie.review}</p>
         {movie.privateComments ? <p><strong>PRIVATE</strong>: {movie.privateComments}</p>: null}
       </div>
@@ -36,7 +37,7 @@ MoviesDetails.fragment = gql`
     review
     privateComments
     user {
-      __displayName
+      ${Users.prefix}displayName
     }
   }
 `;

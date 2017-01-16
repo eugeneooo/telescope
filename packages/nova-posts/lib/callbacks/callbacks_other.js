@@ -16,7 +16,7 @@ import { addCallback } from 'meteor/nova:core';
 // ------------------------------------- posts.remove.sync -------------------------------- //
 
 function PostsRemoveOperations (post) {
-  Users.update({_id: post.userId}, {$inc: {"__postCount": -1}});
+  Users.update({_id: post.userId}, {$inc: {[`${Users.prefix}postCount`]: -1}});
 }
 addCallback("posts.remove.sync", PostsRemoveOperations);
 

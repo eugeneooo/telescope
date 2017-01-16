@@ -36,8 +36,8 @@ const prepareSubscription = (action, collection, itemId, user) => {
 
   // assign the right fields depending on the collection
   const fields = {
-    subscribers: collectionName === 'Users' ? '__subscribers' : 'subscribers',
-    subscriberCount: collectionName === 'Users' ? '__subscriberCount' : 'subscriberCount',
+    subscribers: collectionName === 'Users' ? `${Users.prefix}subscribers` : 'subscribers',
+    subscriberCount: collectionName === 'Users' ? `${Users.prefix}subscriberCount` : 'subscriberCount',
   };
 
   // return true if the item has the subscriber's id in its fields
@@ -119,7 +119,7 @@ const performSubscriptionAction = (action, collection, itemId, user) => {
     Users.update({
       _id: user._id
     }, {
-      [updateOperator]: { [`__subscribedItems.${collectionName}`]: loggedItem }
+      [updateOperator]: { [`${Users.prefix}subscribedItems.${collectionName}`]: loggedItem }
     });
 
     return true; // action completed! ✅

@@ -15,6 +15,7 @@ import MoviesNewForm from './MoviesNewForm.jsx';
 import { compose } from 'react-apollo';
 import { withList, withCurrentUser } from 'meteor/nova:core';
 import gql from 'graphql-tag';
+import Users from 'meteor/nova:users';
 
 const LoadMore = props => <a href="#" className="load-more button button--primary" onClick={e => {e.preventDefault(); props.loadMore();}}>Load More ({props.count}/{props.totalCount})</a>
 
@@ -64,7 +65,7 @@ export const MoviesListFragment = gql`
     year
     createdAt
     user {
-      __displayName
+      ${Users.prefix}displayName
     }
   }
 `;

@@ -1,4 +1,5 @@
 import Users from './collection.js';
+import { getSetting } from 'meteor/nova:lib';
 
 const adminGroup = {
   name: "admin",
@@ -8,6 +9,8 @@ const adminGroup = {
 const ownsOrIsAdmin = (user, document) => {
   return Users.owns(user, document) || Users.isAdmin(user);
 };
+
+const prefix = getSetting('usersPrefix', '_');
 
 /**
  * @summary Users schema
@@ -80,7 +83,7 @@ const schema = {
   /**
     Bio (Markdown version)
   */
-  __bio: {
+  [`${prefix}bio`]: {
     type: String,
     optional: true,
     control: "textarea",
@@ -91,7 +94,7 @@ const schema = {
   /**
     The name displayed throughout the app. Can contain spaces and special characters, doesn't need to be unique
   */
-  __displayName: {
+  [`${prefix}displayName`]: {
     type: String,
     optional: true,
     publish: true,
@@ -105,7 +108,7 @@ const schema = {
   /**
     The user's email. Modifiable.
   */
-  __email: {
+  [`${prefix}email`]: {
     type: String,
     optional: true,
     regEx: SimpleSchema.RegEx.Email,
@@ -120,7 +123,7 @@ const schema = {
   /**
     A hash of the email, used for Gravatar // TODO: change this when email changes
   */
-  __emailHash: {
+  [`${prefix}emailHash`]: {
     type: String,
     publish: true,
     optional: true,
@@ -130,7 +133,7 @@ const schema = {
   /**
     The HTML version of the bio field
   */
-  __htmlBio: {
+  [`${prefix}htmlBio`]: {
     type: String,
     publish: true,
     profile: true,
@@ -140,7 +143,7 @@ const schema = {
   /**
     The user's karma
   */
-  __karma: {
+  [`${prefix}karma`]: {
     type: Number,
     decimal: true,
     publish: true,
@@ -150,7 +153,7 @@ const schema = {
   /**
     The user's profile URL slug // TODO: change this when displayName changes
   */
-  __slug: {
+  [`${prefix}slug`]: {
     type: String,
     publish: true,
     optional: true,
@@ -160,7 +163,7 @@ const schema = {
   /**
     The user's Twitter username // not a real field
   */
-  __twitterUsername: {
+  [`${prefix}twitterUsername`]: {
     type: String,
     optional: true,
     publish: true,
@@ -174,7 +177,7 @@ const schema = {
   /**
     A link to the user's homepage
   */
-  __website: {
+  [`${prefix}website`]: {
     type: String,
     regEx: SimpleSchema.RegEx.Url,
     publish: true,
@@ -188,7 +191,7 @@ const schema = {
   /**
     Groups
   */
-  __groups: {
+  [`${prefix}groups`]: {
     type: [String],
     optional: true,
     control: "checkboxgroup",

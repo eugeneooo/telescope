@@ -3,13 +3,14 @@ import React, { PropTypes, Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Button } from 'react-bootstrap';
 import { withMutation, withCurrentUser, withMessages } from 'meteor/nova:core';
+import Users from 'meteor/nova:users';
 
 class NewsletterButton extends Component {
   constructor(props) {
     super(props);
     this.subscriptionAction = this.subscriptionAction.bind(this);
 
-    const isSubscribed = props.user.__newsletter_subscribeToNewsletter;
+    const isSubscribed = props.user[`${Users.prefix}newsletter_subscribeToNewsletter`];
 
     this.state = {
       labelId: isSubscribed ? 'newsletter.unsubscribe' : 'newsletter.subscribe',

@@ -51,7 +51,7 @@ Users.getDisplayName = function (user) {
   if (typeof user === "undefined") {
     return "";
   } else {
-    return (user.__displayName) ? user.__displayName : Users.getUserName(user);
+    return (user[`${Users.prefix}displayName`]) ? user[`${Users.prefix}displayName`] : Users.getUserName(user);
   }
 };
 Users.getDisplayNameById = function (userId) {return Users.getDisplayName(Users.findOne(userId));};
@@ -67,8 +67,8 @@ Users.getProfileUrl = function (user, isAbsolute) {
   }
   isAbsolute = typeof isAbsolute === "undefined" ? false : isAbsolute; // default to false
   var prefix = isAbsolute ? Utils.getSiteUrl().slice(0,-1) : "";
-  if (user.__slug) {
-    return `${prefix}/users/${user.__slug}`;
+  if (user[`${Users.prefix}slug`]) {
+    return `${prefix}/users/${user[`${Users.prefix}slug`]}`;
   } else {
     return "";
   }
@@ -120,8 +120,8 @@ Users.getGitHubNameById = function (userId) {return Users.getGitHubName(Users.fi
  * @param {Object} user
  */
 Users.getEmail = function (user) {
-  if(user.__email){
-    return user.__email;
+  if(user[`${Users.prefix}email`]){
+    return user[`${Users.prefix}email`];
   }else{
     return null;
   }
@@ -133,7 +133,7 @@ Users.getEmailById = function (userId) {return Users.getEmail(Users.findOne(user
  * @param {Object} user
  */
 Users.getEmailHash = function (user) {
-  return user.__emailHash;
+  return user[`${Users.prefix}emailHash`];
 };
 Users.getEmailHashById = function (userId) {return Users.getEmailHash(Users.findOne(userId));};
 
@@ -144,8 +144,8 @@ Users.getEmailHashById = function (userId) {return Users.getEmailHash(Users.find
  * @param {Object} defaultValue
  */
 Users.getSetting = function (user = null, settingName, defaultValue = null) {
-  // all settings should be prefixed by __ to avoid conflict with other meteor packages writing on Meteor.users collection, so add "__" if needed
-  settingName = settingName.slice(0,2) === "__" ? settingName : "__" + settingName;
+  // all settings should be prefixed with a prefix to avoid conflict with other meteor packages writing on Meteor.users collection, so add "__" if needed
+  settingName = settingName.slice(0, Users.prefix.length) === Users.prefix ? settingName : Users.prefix + settingName;
   if (user) {
     const settingValue = Users.getProperty(user, settingName);
     return typeof settingValue === 'undefined' ? defaultValue : settingValue;
@@ -210,8 +210,8 @@ Users.getProperty = function (object, property) {
 };
 
 Users.setSetting = (user, settingName, value) => {
-  // all users settings should begin with the prexi __: user.__setting namespace, so add "__" if needed
-  var field = settingName.slice(0,2) === "__" ? settingName : "__" + settingName;
+  // all users settings should begin with a prefix, so add it if needed
+  var field = settingName.slice(0, Users.prefix.length) === Users.prefix ? settingName : Users.prefix + settingName;
 
   var modifier = {$set: {}};
   modifier.$set[field] = value;
@@ -260,5 +260,5 @@ Users.getCurrentUserEmail = function () {
 };
 
 Users.findByEmail = function (email) {
-  return Users.findOne({"__email": email});
+  return Users.findOne({[`${Users.prefix}email`]: email});
 };

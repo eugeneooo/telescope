@@ -4,6 +4,7 @@ import { withList } from 'meteor/nova:core';
 import Posts from 'meteor/nova:posts';
 import gql from 'graphql-tag';
 import { withCurrentUser } from 'meteor/nova:core';
+import Users from 'meteor/nova:users';
 
 const PostsList = (props) => {
 
@@ -81,9 +82,9 @@ PostsList.fragment = gql`
     commenters {
       # ...avatarUserInfo
       _id
-      __displayName
-      __emailHash
-      __slug
+      ${Users.prefix}displayName
+      ${Users.prefix}emailHash
+      ${Users.prefix}slug
     }
     upvoters {
       _id
@@ -98,9 +99,9 @@ PostsList.fragment = gql`
     user {
       # ...avatarUserInfo
       _id
-      __displayName
-      __emailHash
-      __slug
+      ${Users.prefix}displayName
+      ${Users.prefix}emailHash
+      ${Users.prefix}slug
     }
     userId
   }

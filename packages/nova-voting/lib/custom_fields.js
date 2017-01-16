@@ -25,52 +25,52 @@ Users.addField([
     An array containing comments upvotes
   */
   {
-    fieldName: '__upvotedComments',
+    fieldName: `${Users.prefix}upvotedComments`,
     fieldSchema: {
       type: [voteSchema],
       publish: false,
       optional: true,
       viewableBy: ['guests'],
-      resolveAs: '__upvotedComments: [Vote]',
+      resolveAs: `${Users.prefix}upvotedComments: [Vote]`,
     }
   },
   /**
     An array containing posts upvotes
   */
   {
-    fieldName: '__upvotedPosts',
+    fieldName: `${Users.prefix}upvotedPosts`,
     fieldSchema: {
       type: [voteSchema],
       publish: false,
       optional: true,
       viewableBy: ['guests'],
-      resolveAs: '__upvotedPosts: [Vote]',
+      resolveAs: `${Users.prefix}upvotedPosts: [Vote]`,
     }
   },
   /**
     An array containing comment downvotes
   */
   {
-    fieldName: '__downvotedComments',
+    fieldName: `${Users.prefix}downvotedComments`,
     fieldSchema: {
       type: [voteSchema],
       publish: false,
       optional: true,
       viewableBy: ['guests'],
-      resolveAs: '__downvotedComments: [Vote]',
+      resolveAs: `${Users.prefix}downvotedComments: [Vote]`,
     }
   },
   /**
     An array containing posts downvotes
   */
   {  
-    fieldName: '__downvotedPosts',
+    fieldName: `${Users.prefix}downvotedPosts`,
     fieldSchema: {
       type: [voteSchema],
       publish: false,
       optional: true,
       viewableBy: ['guests'],
-      resolveAs: '__downvotedPosts: [Vote]',
+      resolveAs: `${Users.prefix}downvotedPosts: [Vote]`,
     }
   },
 ]);

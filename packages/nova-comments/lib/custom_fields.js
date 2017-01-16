@@ -6,7 +6,7 @@ Users.addField([
     Count of the user's comments
   */
   {
-    fieldName: "__commentCount",
+    fieldName: `${Users.prefix}commentCount`,
     fieldSchema: {
       type: Number,
       optional: true,

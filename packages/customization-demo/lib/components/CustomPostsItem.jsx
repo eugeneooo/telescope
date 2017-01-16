@@ -2,8 +2,9 @@ import { Components, getRawComponent, replaceComponent } from 'meteor/nova:lib';
 import React, { PropTypes, Component } from 'react';
 import { FormattedMessage, FormattedRelative } from 'react-intl';
 import { Link } from 'react-router';
-import Posts from "meteor/nova:posts";
+import Posts from 'meteor/nova:posts';
 import gql from 'graphql-tag';
+import Users from 'meteor/nova:users';
 
 class CustomPostsItem extends getRawComponent('PostsItem') {
 
@@ -86,9 +87,9 @@ CustomPostsItem.fragment = gql`
     commenters {
       # ...avatarUserInfo
       _id
-      __displayName
-      __emailHash
-      __slug
+      ${Users.prefix}displayName
+      ${Users.prefix}emailHash
+      ${Users.prefix}slug
     }
     upvoters {
       _id
@@ -103,9 +104,9 @@ CustomPostsItem.fragment = gql`
     user {
       # ...avatarUserInfo
       _id
-      __displayName
-      __emailHash
-      __slug
+      ${Users.prefix}displayName
+      ${Users.prefix}emailHash
+      ${Users.prefix}slug
     }
     color
   }

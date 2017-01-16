@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { ModalTrigger, withList, withCurrentUser, Components, registerComponent, Utils } from 'meteor/nova:core';
 import Comments from 'meteor/nova:comments';
 import gql from 'graphql-tag';
+import Users from 'meteor/nova:users';
 
 const PostsCommentsThread = (props, context) => {
 
@@ -57,9 +58,9 @@ PostsCommentsThread.fragment = gql`
     postedAt
     user {
       _id
-      __displayName
-      __emailHash
-      __slug
+      ${Users.prefix}displayName
+      ${Users.prefix}emailHash
+      ${Users.prefix}slug
     }
     userId
   }
