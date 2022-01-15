@@ -1113,7 +1113,7 @@ eslint-config-airbnb@^13.0.0:
 
 eslint-config-meteor@0.0.9:
   version "0.0.9"
-  resolved "http://registry.npmjs.org/eslint-config-meteor/-/eslint-config-meteor-0.0.9.tgz#6be219420ba4a3ea023db30a866e60ef487652fa"
+  resolved "https://registry.npmjs.org/eslint-config-meteor/-/eslint-config-meteor-0.0.9.tgz#6be219420ba4a3ea023db30a866e60ef487652fa"
 
 eslint-import-resolver-meteor@^0.3.3:
   version "0.3.4"
@@ -2095,9 +2095,9 @@ mailchimp@^1.1.6:
     qs "^6.2.0"
     request "^2.72.0"
 
-marked@^0.3.5:
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.6.tgz#b2c6c618fccece4ef86c4fc6cb8a7cbf5aeda8d7"
+marked@^4.0.10:
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-4.0.10.tgz#423e295385cc0c3a70fa495e0df68b007b879423"
 
 media-typer@0.3.0:
   version "0.3.0"
