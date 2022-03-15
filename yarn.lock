@@ -1113,7 +1113,7 @@ eslint-config-airbnb@^13.0.0:
 
 eslint-config-meteor@0.0.9:
   version "0.0.9"
-  resolved "http://registry.npmjs.org/eslint-config-meteor/-/eslint-config-meteor-0.0.9.tgz#6be219420ba4a3ea023db30a866e60ef487652fa"
+  resolved "https://registry.npmjs.org/eslint-config-meteor/-/eslint-config-meteor-0.0.9.tgz#6be219420ba4a3ea023db30a866e60ef487652fa"
 
 eslint-import-resolver-meteor@^0.3.3:
   version "0.3.4"
@@ -2018,8 +2018,8 @@ levn@^0.3.0, levn@~0.3.0:
     type-check "~0.3.2"
 
 lodash-es@^4.2.0, lodash-es@^4.2.1:
-  version "4.17.4"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
 
 lodash.cond@^4.3.0:
   version "4.5.2"
